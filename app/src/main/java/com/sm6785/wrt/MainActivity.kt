@@ -3,6 +3,7 @@ package com.sm6785.wrt
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.TextView
 import androidx.activity.ComponentActivity
@@ -84,17 +85,17 @@ class MainActivity : ComponentActivity() {
 
     private fun runTimer() {
         val timeView: TextView = findViewById(R.id.time_view)
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             var time = secondsToString()
-            timeView.text = time
             if (isRunning) {
+                timeView.text = time
                 seconds++
             }}, 1000)
     }
 
     private fun runRestTimer(){
         val timeView: TextView = findViewById(R.id.time_view)
-        object : CountDownTimer(seconds, 500) {
+        object : CountDownTimer(seconds*1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var time = secondsToString()
                 timeView.text = time
