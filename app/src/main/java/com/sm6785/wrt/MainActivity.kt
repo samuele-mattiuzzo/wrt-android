@@ -3,16 +3,16 @@ package com.sm6785.wrt
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import java.util.Locale
 import kotlin.math.roundToLong
 
+
 class MainActivity : ComponentActivity() {
 
-    private var seconds:Long = 0L
+    private var seconds: Long = 0L
     private var isRunning: Boolean = false
     private var wasRunning: Boolean = false
 
@@ -24,6 +24,7 @@ class MainActivity : ComponentActivity() {
             isRunning = savedInstanceState.getBoolean("running")
             wasRunning = savedInstanceState.getBoolean("wasRunning")
         }
+        timer()
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
@@ -33,31 +34,15 @@ class MainActivity : ComponentActivity() {
         savedInstanceState.putBoolean("wasRunning", wasRunning)
     }
 
-    override fun onPause() {
-        super.onPause()
-        wasRunning = isRunning
-        isRunning = false
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (wasRunning) {
-            isRunning = true
-        }
-    }
 
     fun onClickStart(view: View) {
+        seconds = 0L
         isRunning = true
-        runTimer()
     }
 
     fun onClickStop(view: View) {
-        isRunning = false
-    }
-
-    fun onClickReset(view: View) {
-        isRunning = false
         seconds = 0L
+        isRunning = false
     }
 
     fun onClickRestDouble(view: View) {
@@ -65,11 +50,13 @@ class MainActivity : ComponentActivity() {
         seconds *= 2L
         runRestTimer()
     }
+
     fun onClickRestOneHalf(view: View) {
         isRunning = false
         seconds *= 1.5f.roundToLong()
         runRestTimer()
     }
+
     fun onClickRestOne(view: View) {
         isRunning = false
         seconds *= 1L
@@ -83,27 +70,34 @@ class MainActivity : ComponentActivity() {
         return String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, secs)
     }
 
-    private fun runTimer() {
+    private fun updateTimeView() {
         val timeView: TextView = findViewById(R.id.time_view)
-        Handler(Looper.getMainLooper()).postDelayed({
-            var time = secondsToString()
-            if (isRunning) {
-                timeView.text = time
-                seconds++
-            }}, 1000)
+        timeView.text = secondsToString()
     }
 
     private fun runRestTimer(){
-        val timeView: TextView = findViewById(R.id.time_view)
         object : CountDownTimer(seconds*1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                var time = secondsToString()
-                timeView.text = time
+                updateTimeView()
             }
 
             override fun onFinish() {
-                timeView.text = ("Done!")
+                seconds = 0L
+                updateTimeView()
             }
         }.start()
+    }
+
+    private fun timer() {
+        val handler = Handler()
+        handler.post(object : Runnable {
+            override fun run() {
+                if (isRunning) {
+                    seconds++
+                }
+                updateTimeView()
+                handler.postDelayed(this, 1_000)
+            }
+        })
     }
 }
