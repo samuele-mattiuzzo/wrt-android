@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#000"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context="org.sm6785.WRT">
 
     <TextView
         android:id="@+id/time_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="374dp"
+        android:layout_height="235dp"
         android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="#fff"
         android:textSize="56sp" />
@@ -27,6 +27,7 @@
         android:layout_marginTop="20dp"
         android:onClick="onClickStart"
         android:text="@string/start" />
+
     <Button
         android:id="@+id/stop_button"
         android:layout_width="wrap_content"
@@ -44,6 +45,7 @@
         android:layout_marginTop="8dp"
         android:onClick="onClickRestDouble"
         android:text="@string/rest2" />
+
     <Button
         android:id="@+id/rest_1.5_x"
         android:layout_width="wrap_content"
@@ -52,6 +54,7 @@
         android:layout_marginTop="8dp"
         android:onClick="onClickRestOneHalf"
         android:text="@string/rest1.5" />
+
     <Button
         android:id="@+id/rest_1_x"
         android:layout_width="wrap_content"
@@ -60,4 +63,4 @@
         android:layout_marginTop="8dp"
         android:onClick="onClickRestOne"
         android:text="@string/rest1" />
-    </LinearLayout>
+</LinearLayout>

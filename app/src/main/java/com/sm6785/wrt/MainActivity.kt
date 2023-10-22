@@ -38,6 +38,7 @@ class MainActivity : ComponentActivity() {
     fun onClickStart(view: View) {
         seconds = 0L
         isRunning = true
+        isCountdown = !isRunning
     }
 
     fun onClickStop(view: View) {
