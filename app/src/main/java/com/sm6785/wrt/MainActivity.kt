@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
 
     private var seconds: Long = 0L
     private var isRunning: Boolean = false
-    private var wasRunning: Boolean = false
+    private var isCountdown: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         if (savedInstanceState != null) {
             seconds = savedInstanceState.getLong("seconds")
             isRunning = savedInstanceState.getBoolean("running")
-            wasRunning = savedInstanceState.getBoolean("wasRunning")
+            isCountdown = savedInstanceState.getBoolean("isCountdown")
         }
         timer()
     }
@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onSaveInstanceState(savedInstanceState)
         savedInstanceState.putLong("seconds", seconds)
         savedInstanceState.putBoolean("running", isRunning)
-        savedInstanceState.putBoolean("wasRunning", wasRunning)
+        savedInstanceState.putBoolean("isCountdown", isCountdown)
     }
 
 
@@ -43,24 +43,25 @@ class MainActivity : ComponentActivity() {
     fun onClickStop(view: View) {
         seconds = 0L
         isRunning = false
+        isCountdown = false
     }
 
     fun onClickRestDouble(view: View) {
         isRunning = false
+        isCountdown = !isRunning
         seconds *= 2L
-        runRestTimer()
     }
 
     fun onClickRestOneHalf(view: View) {
         isRunning = false
+        isCountdown = !isRunning
         seconds *= 1.5f.roundToLong()
-        runRestTimer()
     }
 
     fun onClickRestOne(view: View) {
         isRunning = false
+        isCountdown = !isRunning
         seconds *= 1L
-        runRestTimer()
     }
 
     private fun secondsToString(): String {
@@ -75,25 +76,18 @@ class MainActivity : ComponentActivity() {
         timeView.text = secondsToString()
     }
 
-    private fun runRestTimer(){
-        object : CountDownTimer(seconds*1000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                updateTimeView()
-            }
-
-            override fun onFinish() {
-                seconds = 0L
-                updateTimeView()
-            }
-        }.start()
-    }
-
     private fun timer() {
         val handler = Handler()
         handler.post(object : Runnable {
             override fun run() {
-                if (isRunning) {
+                if (isRunning && !isCountdown) {
                     seconds++
+                }
+                else if (!isRunning && isCountdown && seconds>0L) {
+                    seconds--
+                }
+                else if (seconds == 0L) {
+                    isCountdown = false
                 }
                 updateTimeView()
                 handler.postDelayed(this, 1_000)
