@@ -4,29 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/teal_700"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context="org.sm6785.WRT">
 
     <TextView
         android:id="@+id/time_view"
-        android:layout_width="374dp"
+        android:layout_width="match_parent"
         android:layout_height="125dp"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Large"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:textSize="56sp" />
 
     <TextView
         android:id="@+id/rounds_view"
-        android:layout_width="374dp"
+        android:layout_width="match_parent"
         android:layout_height="125dp"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Large"
-        android:textColor="#fff"
+        android:textColor="@color/white"
+        android:textSize="56sp" />
+
+    <NumberPicker
+        android:id="@+id/number_picker"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/white"
         android:textSize="56sp" />
 
     <Button
@@ -39,6 +49,16 @@
         android:text="@string/start" />
 
     <Button
+        android:id="@+id/rest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:onClick="onClickRest"
+        android:text="@string/rest" />
+
+
+    <Button
         android:id="@+id/stop_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,31 +66,4 @@
         android:layout_marginTop="8dp"
         android:onClick="onClickStop"
         android:text="@string/stop" />
-
-    <Button
-        android:id="@+id/rest_2_x"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:onClick="onClickRestDouble"
-        android:text="@string/rest2" />
-
-    <Button
-        android:id="@+id/rest_1.5_x"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:onClick="onClickRestOneHalf"
-        android:text="@string/rest1.5" />
-
-    <Button
-        android:id="@+id/rest_1_x"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:onClick="onClickRestOne"
-        android:text="@string/rest1" />
 </LinearLayout>

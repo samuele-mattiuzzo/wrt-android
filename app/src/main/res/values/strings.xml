@@ -1,9 +1,6 @@
 <resources>
-    <string name="app_name">WRT</string>
+    <string name="app_name">W:R TIMER</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-    <string name="reset">Reset</string>
-    <string name="rest2">Rest 2x</string>
-    <string name="rest1.5">Rest 1.5x</string>
-    <string name="rest1">Rest 1x</string>
+    <string name="rest">Rest</string>
 </resources>
