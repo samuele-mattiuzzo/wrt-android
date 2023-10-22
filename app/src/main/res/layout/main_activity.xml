@@ -12,7 +12,17 @@
     <TextView
         android:id="@+id/time_view"
         android:layout_width="374dp"
-        android:layout_height="235dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="#fff"
+        android:textSize="56sp" />
+
+    <TextView
+        android:id="@+id/rounds_view"
+        android:layout_width="374dp"
+        android:layout_height="125dp"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Large"
