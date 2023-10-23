@@ -18,21 +18,27 @@
         android:text="@string/wrt" />
 
     <Button
-        android:id="@+id/stopwatch"
+        android:id="@+id/btnStopwatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:onClick="onClickStopwatch"
         android:text="@string/stopwatch" />
 
 
     <Button
-        android:id="@+id/countdown"
+        android:id="@+id/btnCountdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:onClick="onClickCountdown"
         android:text="@string/countdown" />
+
+    <Button
+        android:id="@+id/btnEmom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:text="@string/emom" />
 </LinearLayout>

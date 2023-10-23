@@ -15,5 +15,11 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this, RatioTimerActivity::class.java)
             startActivity(intent)
         }
+
+        val btnEmom = findViewById<Button>(R.id.btnEmom)
+        btnEmom.setOnClickListener {
+            val intent = Intent(this, EmomTimerActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

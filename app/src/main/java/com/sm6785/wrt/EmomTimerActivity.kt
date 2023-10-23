@@ -13,20 +13,19 @@ import androidx.activity.ComponentActivity
 import java.util.Locale
 
 
-class RatioTimerActivity : ComponentActivity() {
+class EmomTimerActivity : ComponentActivity() {
 
-    private var seconds: Float = 0.0f
+    private var seconds: Int = 0
     private var isRunning: Boolean = false
-    private var isCountdown: Boolean = false
     private var rounds: Int = 0
-    private var ratio: Float = 1.0f
-    private val ratioValues = arrayOf(
-        "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5"
+    private var interval: Int = 15
+    private val intervalValues = arrayOf(
+        "15", "30", "45", "60", "90", "120", "180", "240", "300"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.ratio_timer_activity)
+        setContentView(R.layout.emom_timer_activity)
 
         val btm = findViewById<Button>(R.id.backToMain)
         btm.setOnClickListener {
@@ -35,11 +34,10 @@ class RatioTimerActivity : ComponentActivity() {
         }
 
         if (savedInstanceState != null) {
-            seconds = savedInstanceState.getFloat("seconds")
+            seconds = savedInstanceState.getInt("seconds")
             rounds = savedInstanceState.getInt("rounds")
-            ratio = savedInstanceState.getFloat("ratio")
+            interval = savedInstanceState.getInt("interval")
             isRunning = savedInstanceState.getBoolean("running")
-            isCountdown = savedInstanceState.getBoolean("isCountdown")
         }
         setNumberPicker()
         timer()
@@ -47,11 +45,10 @@ class RatioTimerActivity : ComponentActivity() {
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
-        savedInstanceState.putFloat("seconds", seconds)
+        savedInstanceState.putInt("seconds", seconds)
         savedInstanceState.putInt("rounds", rounds)
-        savedInstanceState.putFloat("ratio", ratio)
+        savedInstanceState.putInt("interval", interval)
         savedInstanceState.putBoolean("running", isRunning)
-        savedInstanceState.putBoolean("isCountdown", isCountdown)
     }
 
     private fun setNumberPicker() {
@@ -61,37 +58,28 @@ class RatioTimerActivity : ComponentActivity() {
             numberPicker.wrapSelectorWheel = false
 
             numberPicker.minValue = 0
-            numberPicker.maxValue = ratioValues.size - 1
-            numberPicker.displayedValues = ratioValues
+            numberPicker.maxValue = intervalValues.size - 1
+            numberPicker.displayedValues = intervalValues
 
             numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
-                ratio = ratioValues[newVal].toFloat()
+                interval = intervalValues[newVal].toInt()
             }
         }
 
     }
 
-
     fun onClickStart(view: View) {
-        seconds = 0.0f
+        seconds = interval
         rounds++
         updateRoundsView()
         isRunning = true
-        isCountdown = !isRunning
     }
 
     fun onClickStop(view: View) {
-        seconds = 0.0f
+        seconds = 0
         rounds = 0
         updateRoundsView()
         isRunning = false
-        isCountdown = false
-    }
-
-    fun onClickRest(view: View) {
-        isRunning = false
-        isCountdown = true
-        seconds *= ratio
     }
 
     private fun secondsToString(): String {
@@ -121,16 +109,11 @@ class RatioTimerActivity : ComponentActivity() {
         handler.post(object : Runnable {
             override fun run() {
                 updateTimeView()
-                if (isRunning && !isCountdown) {
-                    seconds++
-                }
-                else if (!isRunning && isCountdown && seconds>0f) {
-                    seconds--
-                }
-                else if (isCountdown) {
-                    if(seconds == 0f) {
-                        isCountdown = false
-                        isRunning = true
+                if (isRunning) {
+                    if (seconds > 0) {
+                        seconds--
+                    } else {
+                        seconds = interval
                         rounds++
                         updateRoundsView()
                         beepTimer()

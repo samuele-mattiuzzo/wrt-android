@@ -4,6 +4,7 @@
     <string name="wrt">Work:Rest Timer</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="countdown">Countdown</string>
+    <string name="emom">EMOM</string>
     <string name="btm">Back</string>
 
     <!-- timer buttons -->
