@@ -28,5 +28,13 @@
             android:name=".EmomTimerActivity"
             android:exported="false"
             android:label="@string/app_name"/>
+        <activity
+            android:name=".StopwatchTimerActivity"
+            android:exported="false"
+            android:label="@string/app_name"/>
+        <activity
+            android:name=".CountdownTimerActivity"
+            android:exported="false"
+            android:label="@string/app_name"/>
     </application>
 </manifest>

@@ -16,6 +16,18 @@ class MainActivity : ComponentActivity() {
             startActivity(intent)
         }
 
+        val btnStopwatch = findViewById<Button>(R.id.btnStopwatch)
+        btnStopwatch.setOnClickListener {
+            val intent = Intent(this, StopwatchTimerActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnCountdown = findViewById<Button>(R.id.btnCountdown)
+        btnCountdown.setOnClickListener {
+            val intent = Intent(this, CountdownTimerActivity::class.java)
+            startActivity(intent)
+        }
+
         val btnEmom = findViewById<Button>(R.id.btnEmom)
         btnEmom.setOnClickListener {
             val intent = Intent(this, EmomTimerActivity::class.java)
