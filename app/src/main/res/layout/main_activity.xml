@@ -9,61 +9,30 @@
     android:padding="16dp"
     tools:context="org.sm6785.WRT">
 
-    <TextView
-        android:id="@+id/time_view"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textColor="@color/white"
-        android:textSize="56sp" />
-
-    <TextView
-        android:id="@+id/rounds_view"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textColor="@color/white"
-        android:textSize="56sp" />
-
-    <NumberPicker
-        android:id="@+id/number_picker"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textColor="@color/white"
-        android:textSize="56sp" />
-
     <Button
-        android:id="@+id/start_button"
+        android:id="@+id/btnWrt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:onClick="onClickStart"
-        android:text="@string/start" />
+        android:text="@string/wrt" />
 
     <Button
-        android:id="@+id/rest"
+        android:id="@+id/stopwatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:onClick="onClickRest"
-        android:text="@string/rest" />
+        android:onClick="onClickStopwatch"
+        android:text="@string/stopwatch" />
 
 
     <Button
-        android:id="@+id/stop_button"
+        android:id="@+id/countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:onClick="onClickStop"
-        android:text="@string/stop" />
+        android:onClick="onClickCountdown"
+        android:text="@string/countdown" />
 </LinearLayout>

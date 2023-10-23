@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">W:R TIMER</string>
+    <!-- activity switcher buttons -->
+    <string name="wrt">Work:Rest Timer</string>
+    <string name="stopwatch">Stopwatch</string>
+    <string name="countdown">Countdown</string>
+    <string name="btm">Back</string>
+
+    <!-- timer buttons -->
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="rest">Rest</string>
+
 </resources>
