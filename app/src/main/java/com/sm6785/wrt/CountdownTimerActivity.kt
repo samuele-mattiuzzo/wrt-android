@@ -29,28 +29,13 @@ class CountdownTimerActivity : ComponentActivity() {
 
         val btm = findViewById<Button>(R.id.backToMain)
         btm.setOnClickListener {
+            isRunning = false
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        }
-
-        if (savedInstanceState != null) {
-            seconds = savedInstanceState.getInt("seconds")
-            rounds = savedInstanceState.getInt("rounds")
-            interval = savedInstanceState.getInt("interval")
-            isRunning = savedInstanceState.getBoolean("running")
         }
         setNumberPicker()
         timer()
     }
-
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        super.onSaveInstanceState(savedInstanceState)
-        savedInstanceState.putInt("seconds", seconds)
-        savedInstanceState.putInt("rounds", rounds)
-        savedInstanceState.putInt("interval", interval)
-        savedInstanceState.putBoolean("running", isRunning)
-    }
-
     private fun setNumberPicker() {
         val numberPicker = findViewById<NumberPicker>(R.id.number_picker)
 

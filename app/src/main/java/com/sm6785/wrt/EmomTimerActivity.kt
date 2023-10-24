@@ -141,7 +141,10 @@ class EmomTimerActivity : ComponentActivity() {
         val roundsView: TextView = findViewById(R.id.rounds_view)
         roundsView.text = "set $workRound/$workIntervalRepeats | round $rounds"
     }
-
+    private fun setBeepTimer() {
+        val toneG = ToneGenerator(AudioManager.STREAM_ALARM, 80)
+        toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 100)
+    }
     private fun beepTimer() {
         val toneG = ToneGenerator(AudioManager.STREAM_ALARM, 100)
         toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 500)
@@ -160,10 +163,15 @@ class EmomTimerActivity : ComponentActivity() {
                         // have we completed all the work intervals?
                         if (workRound == workIntervalRepeats) {
                             // should we rest?
+                            if (restSeconds == restInterval) {
+                                setBeepTimer()
+                            }
                             if (restSeconds > 0) {
                                 restSeconds--
                             } else {
                                 updateTimeView()
+                                beepTimer()
+
                                 // next round
                                 restSeconds = restInterval
                                 workSeconds = workInterval
@@ -175,9 +183,9 @@ class EmomTimerActivity : ComponentActivity() {
                             // do we have more intervals in this round? reset
                             workSeconds = workInterval
                             workRound++
+                            setBeepTimer()
                         }
                         updateRoundsView()
-                        //beepTimer()
                     }
                 }
                 handler.postDelayed(this, 1_000)

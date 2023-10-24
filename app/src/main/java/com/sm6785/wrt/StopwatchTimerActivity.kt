@@ -24,21 +24,12 @@ class StopwatchTimerActivity : ComponentActivity() {
 
         val btm = findViewById<Button>(R.id.backToMain)
         btm.setOnClickListener {
+            isRunning = false
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        if (savedInstanceState != null) {
-            seconds = savedInstanceState.getFloat("seconds")
-            isRunning = savedInstanceState.getBoolean("running")
-        }
         timer()
-    }
-
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        super.onSaveInstanceState(savedInstanceState)
-        savedInstanceState.putFloat("seconds", seconds)
-        savedInstanceState.putBoolean("running", isRunning)
     }
 
 

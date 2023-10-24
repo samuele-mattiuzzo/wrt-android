@@ -30,28 +30,12 @@ class RatioTimerActivity : ComponentActivity() {
 
         val btm = findViewById<Button>(R.id.backToMain)
         btm.setOnClickListener {
+            isRunning = false
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-        if (savedInstanceState != null) {
-            seconds = savedInstanceState.getFloat("seconds")
-            rounds = savedInstanceState.getInt("rounds")
-            ratio = savedInstanceState.getFloat("ratio")
-            isRunning = savedInstanceState.getBoolean("running")
-            isCountdown = savedInstanceState.getBoolean("isCountdown")
-        }
         setNumberPicker()
         timer()
-    }
-
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        super.onSaveInstanceState(savedInstanceState)
-        savedInstanceState.putFloat("seconds", seconds)
-        savedInstanceState.putInt("rounds", rounds)
-        savedInstanceState.putFloat("ratio", ratio)
-        savedInstanceState.putBoolean("running", isRunning)
-        savedInstanceState.putBoolean("isCountdown", isCountdown)
     }
 
     private fun setNumberPicker() {
