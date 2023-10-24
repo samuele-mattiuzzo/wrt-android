@@ -4,41 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="#2C2E2E"
+    android:keepScreenOn="true"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context="org.sm6785.WRT">
+
 
     <Button
         android:id="@+id/btnWrt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="@string/wrt" />
-
-    <Button
-        android:id="@+id/btnStopwatch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:text="@string/stopwatch" />
-
-
-    <Button
-        android:id="@+id/btnCountdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:text="@string/countdown" />
 
     <Button
         android:id="@+id/btnEmom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="25dp"
         android:text="@string/emom" />
+
+    <Button
+        android:id="@+id/btnCountdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:text="@string/countdown" />
+
+    <Button
+        android:id="@+id/btnStopwatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:text="@string/stopwatch" />
 </LinearLayout>
