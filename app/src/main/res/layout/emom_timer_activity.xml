@@ -7,44 +7,65 @@
     android:background="@color/teal_700"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="org.sm6785.WRT">
+    tools:context="org.sm6785.WRT"
+    android:keepScreenOn="true">
 
     <TextView
         android:id="@+id/time_view"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="@color/white"
-        android:textSize="56sp" />
+        android:textSize="50sp" />
 
     <TextView
         android:id="@+id/rounds_view"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="@color/white"
-        android:textSize="56sp" />
+        android:textSize="50sp" />
+
+    <NumberPicker
+        android:id="@+id/work_rounds_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
 
     <NumberPicker
         android:id="@+id/number_picker"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="@color/white"
-        android:textSize="56sp" />
+        android:textSize="50sp" />
+
+    <NumberPicker
+        android:id="@+id/rest_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:onClick="onClickStart"
         android:text="@string/start" />
 
@@ -53,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:onClick="onClickStop"
         android:text="@string/stop" />
 
@@ -62,6 +83,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/btm" />
 </LinearLayout>
