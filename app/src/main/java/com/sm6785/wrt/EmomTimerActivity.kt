@@ -15,12 +15,20 @@ import java.util.Locale
 
 class EmomTimerActivity : ComponentActivity() {
 
-    private var seconds: Int = 0
-    private var isRunning: Boolean = false
+    // The total rounds performed
     private var rounds: Int = 0
-    private var interval: Int = 15
+
+    private var workSeconds: Int = 0
+    private var workRound: Int = 0
+    private var restSeconds: Int = 0
+
+    private var isRunning: Boolean = false
+
+    private var workIntervalRepeats: Int = 1
+    private var workInterval: Int = 15
+    private var restInterval: Int = 15
     private val intervalValues = arrayOf(
-        "15", "30", "45", "60", "90", "120", "180", "240", "300"
+        "10", "15", "20", "30", "45", "60", "90", "120", "180", "240", "300"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,29 +37,32 @@ class EmomTimerActivity : ComponentActivity() {
 
         val btm = findViewById<Button>(R.id.backToMain)
         btm.setOnClickListener {
+            isRunning = false
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-        if (savedInstanceState != null) {
-            seconds = savedInstanceState.getInt("seconds")
-            rounds = savedInstanceState.getInt("rounds")
-            interval = savedInstanceState.getInt("interval")
-            isRunning = savedInstanceState.getBoolean("running")
-        }
-        setNumberPicker()
+        setWorkRoundsPicker()
+        setWorkIntervalPicker()
+        setRestIntervalPicker()
         timer()
     }
 
-    override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        super.onSaveInstanceState(savedInstanceState)
-        savedInstanceState.putInt("seconds", seconds)
-        savedInstanceState.putInt("rounds", rounds)
-        savedInstanceState.putInt("interval", interval)
-        savedInstanceState.putBoolean("running", isRunning)
+    private fun setWorkRoundsPicker() {
+        val numberPicker = findViewById<NumberPicker>(R.id.number_picker)
+
+        if (numberPicker != null) {
+            numberPicker.wrapSelectorWheel = false
+
+            numberPicker.minValue = 0
+            numberPicker.maxValue = 10
+
+            numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
+                workIntervalRepeats = newVal
+            }
+        }
     }
 
-    private fun setNumberPicker() {
+    private fun setWorkIntervalPicker() {
         val numberPicker = findViewById<NumberPicker>(R.id.number_picker)
 
         if (numberPicker != null) {
@@ -62,30 +73,45 @@ class EmomTimerActivity : ComponentActivity() {
             numberPicker.displayedValues = intervalValues
 
             numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
-                interval = intervalValues[newVal].toInt()
+                workInterval = intervalValues[newVal].toInt()
             }
         }
+    }
 
+    private fun setRestIntervalPicker() {
+        val numberPicker = findViewById<NumberPicker>(R.id.number_picker)
+
+        if (numberPicker != null) {
+            numberPicker.wrapSelectorWheel = false
+
+            numberPicker.minValue = 0
+            numberPicker.maxValue = intervalValues.size - 1
+            numberPicker.displayedValues = intervalValues
+
+            numberPicker.setOnValueChangedListener { picker, oldVal, newVal ->
+                restInterval = intervalValues[newVal].toInt()
+            }
+        }
     }
 
     fun onClickStart(view: View) {
-        seconds = interval
+        workSeconds = workInterval
         rounds++
         updateRoundsView()
         isRunning = true
     }
 
     fun onClickStop(view: View) {
-        seconds = 0
+        workSeconds = 0
         rounds = 0
         updateRoundsView()
         isRunning = false
     }
 
     private fun secondsToString(): String {
-        val hours = (seconds / 3600f).toInt()
-        val minutes = ((seconds % 3600f) / 60f).toInt()
-        val secs = (seconds % 60f).toInt()
+        val hours = (workSeconds / 3600f).toInt()
+        val minutes = ((workSeconds % 3600f) / 60f).toInt()
+        val secs = (workSeconds % 60f).toInt()
         return String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, secs)
     }
 
@@ -110,11 +136,17 @@ class EmomTimerActivity : ComponentActivity() {
             override fun run() {
                 updateTimeView()
                 if (isRunning) {
-                    if (seconds > 0) {
-                        seconds--
+                    if (workSeconds > 0) {
+                        workSeconds--
                     } else {
-                        seconds = interval
-                        rounds++
+                        workSeconds = workInterval
+                        if (workRound == workIntervalRepeats) {
+                            workRound = 0
+                            rounds++
+                        } else {
+                            workSeconds == workInterval
+                            workRound++
+                        }
                         updateRoundsView()
                         beepTimer()
                     }
