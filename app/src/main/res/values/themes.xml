@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.WRT" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.WRT" parent="android:Theme.Material.Light.NoActionBar" >
+        <item name="android:background">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:colorButtonNormal">@color/purple_700</item>
+    </style>
 </resources>

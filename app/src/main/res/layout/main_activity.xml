@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2C2E2E"
-    android:keepScreenOn="true"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="org.sm6785.WRT">
+    android:theme="@style/Theme.WRT"
+    tools:context="org.sm6785.WRT"
+    android:keepScreenOn="true">
 
 
     <Button

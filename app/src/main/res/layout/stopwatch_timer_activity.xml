@@ -4,45 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< Updated upstream
     android:background="#2C2E2E"
+=======
+>>>>>>> Stashed changes
     android:orientation="vertical"
     android:padding="16dp"
+    android:theme="@style/Theme.WRT"
     tools:context="org.sm6785.WRT"
     android:keepScreenOn="true">
 
     <TextView
         android:id="@+id/time_view"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="@color/white"
-        android:textSize="56sp" />
+        android:textSize="50sp" />
 
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="wrap_content"
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:onClick="onClickStart"
-        android:text="@string/start" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/stop_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:onClick="onClickStop"
-        android:text="@string/stop" />
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="onClickStart"
+            android:text="@string/start" />
 
-    <Button
-        android:id="@+id/backToMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="@string/btm" />
+        <Button
+            android:id="@+id/stop_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="onClickStop"
+            android:text="@string/stop" />
+
+        <Button
+            android:id="@+id/backToMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/btm" />
+    </LinearLayout>
 </LinearLayout>

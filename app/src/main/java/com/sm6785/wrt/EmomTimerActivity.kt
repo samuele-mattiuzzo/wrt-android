@@ -57,7 +57,7 @@ class EmomTimerActivity : ComponentActivity() {
     }
 
     private fun setWorkRoundsPicker() {
-        val numberPicker = findViewById<NumberPicker>(R.id.number_picker)
+        val numberPicker = findViewById<NumberPicker>(R.id.work_rounds_picker)
 
         if (numberPicker != null) {
             numberPicker.wrapSelectorWheel = false
@@ -72,7 +72,7 @@ class EmomTimerActivity : ComponentActivity() {
     }
 
     private fun setWorkIntervalPicker() {
-        val numberPicker = findViewById<NumberPicker>(R.id.work_rounds_picker)
+        val numberPicker = findViewById<NumberPicker>(R.id.number_picker)
 
         if (numberPicker != null) {
             numberPicker.wrapSelectorWheel = false
